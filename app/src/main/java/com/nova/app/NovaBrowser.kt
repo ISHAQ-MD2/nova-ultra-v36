@@ -493,8 +493,8 @@ object NovaBrowser {
     }
 
     private fun detachActive() { active?.let { (it.web.parent as? ViewGroup)?.removeView(it.web) } }
-    private fun pauseAll() { try { for (t in tabs) t.web.onPause(); WebView.pauseTimers() } catch (_: Throwable) {} }
-    private fun resumeAll() { try { WebView.resumeTimers(); for (t in tabs) t.web.onResume() } catch (_: Throwable) {} }
+    private fun pauseAll() { try { for (t in tabs) t.web.onPause(); t.web.pauseTimers() } catch (_: Throwable) {} }
+    private fun resumeAll() { try { for (t in tabs) { t.web.resumeTimers(); t.web.onResume() } } catch (_: Throwable) {} }
 
     // ------------------------------------------------------------------ hosts (poori screen / floating / chhupa hua)
     fun bindActivity(a: BrowserActivity) {
