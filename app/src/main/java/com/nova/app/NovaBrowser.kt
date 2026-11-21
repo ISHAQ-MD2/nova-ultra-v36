@@ -88,7 +88,7 @@ object NovaBrowser {
     val main = Handler(Looper.getMainLooper())
 
     val tabs = CopyOnWriteArrayList<Tab>()
-    @JvmName("activeVar") @Volatile var active: Tab? = null
+    @Volatile var active: Tab? = null
     @Volatile var host = Host.NONE
     @Volatile var activity: BrowserActivity? = null
     @Volatile var onChange: (() -> Unit)? = null
@@ -449,7 +449,7 @@ object NovaBrowser {
         return t
     }
 
-    fun setActive(t: Tab) {
+    fun setTabActive(t: Tab) {
         active = t
         attachActive()
         changed()
